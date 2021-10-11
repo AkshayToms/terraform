@@ -1,23 +1,26 @@
-#step 1 init 
-- name: 'hashicorp/terraform:1.0.0' 
-  args: ['init', 
-    '-backend-config=project=pragmatic-will-324605', 
-    '-backend-config=bucketpotent-will-324605-tfstate'] 
-  env: 
-    - "TF_VAR_project-name=pragmatic-will-324605" 
+# integrate tf with cloud build  
+# using build steps
+# Step 1: runs 'terraform init' command
+# Step 2: runs 'terraform plan' command
+# Step 3: runs 'terraform apply' command 
 
- 
+steps:
+#1
+- name: 'hashicorp/terraform:1.0.0'
+  args: ['init',
+    '-backend-config=project=PROJECTID',
+    '-backend-config=bucketPROJECTID-tfstate']
+  env:
+    - "TF_VAR_project-name=PROJECTID"
 
-#step 2 plan 
+#2
+- name: 'hashicorp/terraform:1.0.0'
+  args: ['plan']
+  env:
+    - "TF_VAR_project-name=PROJECTID"
 
-- name: 'hashicorp/terraform:1.0.0' 
-  args: ['plan'] 
-  env: 
-    - "TF_VAR_project-name=pragmatic-will-324605" 
-
-#step 3 apply 
-
-- name: 'hashicorp/terraform:1.0.0' 
-  args: ['apply', '-auto-approve'] 
-  env: 
-    - "TF_VAR_project-name=pragmatic-will-324605" 
+#3
+- name: 'hashicorp/terraform:1.0.0'
+  args: ['apply', '-auto-approve']
+  env:
+    - "TF_VAR_project-name=PROJECTID"
