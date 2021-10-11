@@ -1,10 +1,10 @@
 #step 1 init 
 - name: 'hashicorp/terraform:1.0.0' 
   args: ['init', 
-  '-backend-config=project=pragmatic-will-324605', 
-  '-backend-config=bucketpotent-will-324605-tfstate'] 
+    '-backend-config=project=pragmatic-will-324605', 
+    '-backend-config=bucketpotent-will-324605-tfstate'] 
   env: 
-  - "TF_VAR_project-name=pragmatic-will-324605" 
+    - "TF_VAR_project-name=pragmatic-will-324605" 
 
  
 
@@ -13,11 +13,11 @@
 - name: 'hashicorp/terraform:1.0.0' 
   args: ['plan'] 
   env: 
-  - "TF_VAR_project-name=pragmatic-will-324605" 
+    - "TF_VAR_project-name=pragmatic-will-324605" 
 
 #step 3 apply 
 
 - name: 'hashicorp/terraform:1.0.0' 
   args: ['apply', '-auto-approve'] 
   env: 
-  - "TF_VAR_project-name=pragmatic-will-324605" 
+    - "TF_VAR_project-name=pragmatic-will-324605" 
